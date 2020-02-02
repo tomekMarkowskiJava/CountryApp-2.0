@@ -6,8 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.internal.LinkedTreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Scanner;
 
-@RestController
+@Component
 public class ApiController {
 
     private RestTemplate restTemplate;
@@ -29,29 +28,37 @@ public class ApiController {
         this.countryRepository = countryRepository;
     }
 
-    @RequestMapping("/")
+
     public void downloadData() throws IOException {
-        String restCountriesAPI = "https://restcountries.eu/rest/v2/all";
-        URL url = new URL(restCountriesAPI);
-        URLConnection connection = url.openConnection();
-        Scanner scanner = new Scanner(connection.getInputStream());
-        String text = "";
+        if (countryRepository.count() == 0) {
+            String restCountriesAPI = "https://restcountries.eu/rest/v2/all";
+            URL url = new URL(restCountriesAPI);
+            URLConnection connection = url.openConnection();
+            Scanner scanner = new Scanner(connection.getInputStream());
+            String text = "";
 
-        while (scanner.hasNextLine()) {
-            text = text.concat(scanner.nextLine());
+            while (scanner.hasNextLine()) {
+                text = text.concat(scanner.nextLine());
+            }
+
+            List<LinkedTreeMap> temp;
+            Gson gson = new Gson();
+            temp = gson.fromJson(text, List.class);
+
+            for (LinkedTreeMap linkedTreeMap : temp) {
+                Country country = new Country();
+
+                JsonObject jsonObject = gson.toJsonTree(linkedTreeMap).getAsJsonObject();
+                country = gson.fromJson(jsonObject, Country.class);
+                if (!(country.getCapital().isEmpty() || country.getRegion().isEmpty())) {
+                    countryRepository.save(country);
+                    System.out.println("Added: " + country.getName() + " " + country.getCapital() + " " + country.getRegion());
+                    if (country.getName().equals("Antarctica")){
+                        System.out.println(country.getCapital() + "xxx");
+                    }
+                }
+            }
         }
 
-        List<LinkedTreeMap> temp;
-        Gson gson = new Gson();
-        temp = gson.fromJson(text, List.class);
-
-        for (LinkedTreeMap linkedTreeMap : temp) {
-            Country country = new Country();
-
-            JsonObject jsonObject = gson.toJsonTree(linkedTreeMap).getAsJsonObject();
-            country = gson.fromJson(jsonObject, Country.class);
-            countryRepository.save(country);
-            System.out.println("Added: " + country.getName()+" "+ country.getCapital() + " " + country.getRegion());
-        }
     }
 }

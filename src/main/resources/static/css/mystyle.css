@@ -1,0 +1,25 @@
+div#header{
+    background-color: white;
+    color: black;
+
+
+}
+div#footer{
+    background-color: red;
+    color: white;
+}
+
+.div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px 5px 10px 30px;
+    width: 500px;
+    opacity: 0.9;
+    position: center;
+}
+.buttons {
+    background-color: dodgerblue;
+    color: white;
+    width: 150px;
+    height: 45px;
+}

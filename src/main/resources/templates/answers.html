@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:mvc="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Quiz</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+<body background="/images/world.jpg" class="body">
+<center>
+    <div class="div">
+        <header>
+            <h1 style="font-family: fantasy">
+                Country Quiz
+            </h1>
+        </header>
+    </div>
+    <br/>
+    <div class="div">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Capital</th>
+                <th scope="col">Region</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="country: ${countryList}">
+
+                <td th:text="${country.name}"/>
+                <td th:text="${country.capital}"/>
+                <td th:text="${country.region}"/>
+
+
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</center>
+</body>
+</html>
