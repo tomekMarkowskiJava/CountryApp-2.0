@@ -29,6 +29,12 @@ public class ViewController {
         return "answers";
     }
 
+    @GetMapping("/play")
+    public String start(Model model){
+
+        return "play";
+    }
+
     @GetMapping
     public String menu() throws IOException {
         apiController.downloadData();

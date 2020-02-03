@@ -23,3 +23,8 @@ div#footer{
     width: 150px;
     height: 45px;
 }
+
+.body{
+    background-image: url("../images/world.jpg");
+
+}
