@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:mvc="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Quiz</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+</head>
+<body class="body">
+<center>
+    <div class="div">
+        <header>
+            <h1 style="font-family: fantasy">
+                Country Quiz
+            </h1>
+        </header>
+    </div>
+    <br/>
+
+    <div class="div">
+        <b>What is the capital of</b>
+        <form  method="post" name="form">
+            <br>
+            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 1</b></button>
+            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 2</b></button>
+            <br>
+            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 3</b></button>
+            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 4</b></button>
+            <br>
+        </form>
+    </div>
+    <br/>
+    <div class="div">
+        <button type="button" onclick="window.location.href='/'" class="buttons"><b>Exit</b></button>
+    </div>
+
+</center>
+</body>
+</html>
