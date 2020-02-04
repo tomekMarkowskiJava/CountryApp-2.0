@@ -4,7 +4,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Game {
-    int points = 0;
-    int numberOfQuestions = 10;
+    private int points = 0;
+    private int round;
+    private int numberOfQuestions = 10;
+    private String chosenRegion;
 
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getNumberOfQuestions() {
+        return numberOfQuestions;
+    }
+
+    public String getChosenRegion() {
+        return chosenRegion;
+    }
+
+    public void setChosenRegion(String chosenRegion) {
+        this.chosenRegion = chosenRegion;
+    }
 }

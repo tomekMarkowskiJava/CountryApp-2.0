@@ -12,6 +12,7 @@
         <header>
             <h1 style="font-family: fantasy">
                 Country Quiz
+
             </h1>
         </header>
     </div>
@@ -19,13 +20,13 @@
 
     <div class="div">
         <b>What is the capital of</b>
-        <form  method="post" name="form">
+        <form  method="get" name="form" onclick="window.location.href='/play'">
             <br>
-            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 1</b></button>
-            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 2</b></button>
+            <button type="submit" class="buttons"><b>capital 1</b></button>
+            <button type="submit" class="buttons"><b>capital 2</b></button>
             <br>
-            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 3</b></button>
-            <button type="button" onclick="window.location.href='/play'" class="buttons"><b>capital 4</b></button>
+            <button type="submit" class="buttons"><b>capital 3</b></button>
+            <button type="submit" class="buttons"><b>capital 4</b></button>
             <br>
         </form>
     </div>
