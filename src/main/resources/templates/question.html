@@ -8,23 +8,22 @@
 </head>
 <body class="body">
 <center>
-    <div class="div">
+    <div class="div" style="font-family: fantasy">
         <header>
-            <h1 style="font-family: fantasy">
-                Country Quiz
+            <h1>Country Quiz</h1>
+            <h1 th:text="${region}"></h1>
 
-            </h1>
         </header>
     </div>
     <br/>
 
     <div class="div">
         <b>What is the capital of</b>
-        <form  method="get" name="form" onclick="window.location.href='/play'">
+        <form  method="post" name="form" onclick="window.location.href='/nextquestion'">
             <br>
             <button type="submit" class="buttons"><b>capital 1</b></button>
             <button type="submit" class="buttons"><b>capital 2</b></button>
-            <br>
+            <br/>
             <button type="submit" class="buttons"><b>capital 3</b></button>
             <button type="submit" class="buttons"><b>capital 4</b></button>
             <br>
