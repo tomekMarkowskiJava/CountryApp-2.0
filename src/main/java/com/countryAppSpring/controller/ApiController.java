@@ -53,9 +53,7 @@ public class ApiController {
                 if (!(country.getCapital().isEmpty() || country.getRegion().isEmpty())) {
                     countryRepository.save(country);
                     System.out.println("Added: " + country.getName() + " " + country.getCapital() + " " + country.getRegion());
-                    if (country.getName().equals("Antarctica")){
-                        System.out.println(country.getCapital() + "xxx");
-                    }
+
                 }
             }
         }

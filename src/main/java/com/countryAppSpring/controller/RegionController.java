@@ -24,13 +24,13 @@ public class RegionController {
     }
 
     @PostMapping
-    public String chooseRegion(String region, Model model) {
+    public RedirectView chooseRegion(String region, Model model) {
         model.addAttribute("region", region);
         game.setChosenRegion(region);
-        System.out.println(game.getChosenRegion());
-        return "question";
+        return new RedirectView("/question");
     }
 
-
-
+    public Game getGame() {
+        return game;
+    }
 }
