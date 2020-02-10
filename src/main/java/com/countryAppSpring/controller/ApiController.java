@@ -29,7 +29,7 @@ public class ApiController {
     }
 
 
-    public void downloadData() throws IOException {
+    void downloadData() throws IOException {
         if (countryRepository.count() == 0) {
             String restCountriesAPI = "https://restcountries.eu/rest/v2/all";
             URL url = new URL(restCountriesAPI);

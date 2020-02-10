@@ -8,20 +8,21 @@
 </head>
 <body class="body">
 <center>
-    <div class="div" style="font-family: fantasy">
+    <div class="div">
         <header>
-            <h1>Country Quiz</h1>
-            <h1>Region: <span th:text="${region}"></span></h1>
-
+            <h1 style="font-family: fantasy">
+                Country Quiz
+            </h1>
         </header>
     </div>
     <br/>
 
     <div class="div">
-        <h1>What is the capital of <span th:text="${country}"></span>? </h1>
-        <form  method="post" name="form" th:each="answer: ${answers}">
+        <form  method="get" name="form">
             <br>
-            <button type="submit" class="buttons" name="userAnswer" th:value="${answer}" th:text="${answer}"></button>
+            <h1>Your score:</h1>
+            <br>
+            <h1><span th:text="${points}"></span>/10</h1>
             <br>
         </form>
     </div>
@@ -29,6 +30,7 @@
     <div class="div">
         <button type="button" onclick="window.location.href='/'" class="buttons"><b>Exit</b></button>
     </div>
+
 
 </center>
 </body>

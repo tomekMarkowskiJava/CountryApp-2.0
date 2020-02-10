@@ -1,19 +1,29 @@
 package com.countryAppSpring.model;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
 
 @Component
 @Scope("singleton")
 public class Game {
-    private int points = 0;
+    private int points;
     private int round;
     private int numberOfQuestions = 10;
     private String chosenRegion;
 
     public Game() {
+    }
+
+    public void reset(){
+        points = 0;
+        round = 1;
+    }
+
+    public void nextRound(){
+        round++;
+    }
+    public void addPoint(){
+        points++;
     }
 
     public int getPoints() {
@@ -29,6 +39,11 @@ public class Game {
     }
 
     public void setChosenRegion(String chosenRegion) {
+        reset();
         this.chosenRegion = chosenRegion;
+    }
+
+    public int getRound() {
+        return round;
     }
 }
