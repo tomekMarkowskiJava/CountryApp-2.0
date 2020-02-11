@@ -11,6 +11,21 @@ public class Game {
     private int numberOfQuestions = 10;
     private String chosenRegion;
 
+    private String result;
+
+    public String getResult() {
+        if (points > 6) {
+            result = "Great work! You know the capitals of the countries!";
+        } else if (points > 3) {
+            result = "Not bad. You know some capitals. But you can still do better.";
+        } else if (points > 0) {
+            result = "Unfortunatelly, You know only few capitals...";
+        } else {
+            result = "Really? You don't know any capitals?";
+        }
+        return result;
+    }
+
     public Game() {
     }
 

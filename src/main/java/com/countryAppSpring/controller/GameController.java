@@ -46,6 +46,7 @@ public class GameController {
     public String play(Model model) {
         if (game.getRound() > game.getNumberOfQuestions()) {
             model.addAttribute("points", game.getPoints());
+            model.addAttribute("result", game.getResult());
             return "result";
         } else {
 
