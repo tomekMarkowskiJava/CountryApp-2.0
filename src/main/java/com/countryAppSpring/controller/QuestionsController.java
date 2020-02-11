@@ -2,7 +2,6 @@ package com.countryAppSpring.controller;
 
 import com.countryAppSpring.model.Game;
 import com.countryAppSpring.model.Question;
-import com.countryAppSpring.service.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +13,12 @@ import org.springframework.web.servlet.view.RedirectView;
 public class QuestionsController {
 
     private Game game;
-    private CountryRepository repository;
     private Question question;
 
 
     @Autowired
-    public QuestionsController(Game game, CountryRepository repository, Question question) {
+    public QuestionsController(Game game, Question question) {
         this.game = game;
-        this.repository = repository;
         this.question = question;
     }
 
@@ -36,7 +33,4 @@ public class QuestionsController {
         return new RedirectView("/question");
     }
 
-    public Game getGame() {
-        return game;
-    }
 }

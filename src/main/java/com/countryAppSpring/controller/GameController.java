@@ -1,6 +1,5 @@
 package com.countryAppSpring.controller;
 
-import com.countryAppSpring.model.Country;
 import com.countryAppSpring.model.Game;
 import com.countryAppSpring.model.Question;
 import com.countryAppSpring.service.CountryRepository;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Random;
 
 @Controller
 @RequestMapping("/")
@@ -39,34 +36,20 @@ public class GameController {
         return "answers";
     }
 
-    @GetMapping("/play")
+    @GetMapping("/chooseregion")
     public String start() {
 
-        return "play";
+        return "chooseregion";
     }
 
     @GetMapping("/question")
-    public String createQuestion(Model model) {
+    public String play(Model model) {
         if (game.getRound() > game.getNumberOfQuestions()) {
             model.addAttribute("points", game.getPoints());
             return "result";
         } else {
 
-            List<Country> countriesPool = countryRepository.findCountriesByRegion(game.getChosenRegion());
-            Random random = new Random();
-
-            question.setQuestionCountry(countriesPool.remove(random.nextInt(countriesPool.size())));
-
-
-            for (int i = 0; i < question.getNumberOfAnswers() - 1; i++) {
-                String newAnswer = countriesPool.get(random.nextInt(countriesPool.size())).getCapital();
-                if (question.addAnswer(newAnswer)) {
-                } else {
-                    i--;
-                }
-            }
-
-            question.shuffleAnswers();
+            question.createQuestion();
 
             model.addAttribute("region", game.getChosenRegion());
             model.addAttribute("country", question.getQuestionCountry().getName());
@@ -83,19 +66,4 @@ public class GameController {
         return "index";
     }
 
-    public CountryRepository getCountryRepository() {
-        return countryRepository;
-    }
-
-    public ApiController getApiController() {
-        return apiController;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
 }

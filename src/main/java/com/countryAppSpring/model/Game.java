@@ -14,7 +14,7 @@ public class Game {
     public Game() {
     }
 
-    public void reset(){
+    private void reset() {
         points = 0;
         round = 1;
     }
@@ -22,7 +22,8 @@ public class Game {
     public void nextRound(){
         round++;
     }
-    public void addPoint(){
+
+    void addPoint() {
         points++;
     }
 

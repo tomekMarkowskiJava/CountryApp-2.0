@@ -1,25 +1,45 @@
 package com.countryAppSpring.model;
 
+import com.countryAppSpring.service.CountryRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class Question {
 
     private Game game;
+    private CountryRepository countryRepository;
     private Country questionCountry;
     private String correctAnswer;
     private List<String> answers = new ArrayList<>();
     private int numberOfAnswers = 4;
 
-    public Question(Game game) {
+    public Question(Game game, CountryRepository countryRepository) {
         this.game = game;
+        this.countryRepository = countryRepository;
     }
 
-    public boolean addAnswer(String answer){
+    public void createQuestion() {
+        List<Country> countriesPool = countryRepository.findCountriesByRegion(game.getChosenRegion());
+        Random random = new Random();
+
+        setQuestionCountry(countriesPool.remove(random.nextInt(countriesPool.size())));
+
+
+        for (int i = 0; i < getNumberOfAnswers() - 1; i++) {
+            String newAnswer = countriesPool.get(random.nextInt(countriesPool.size())).getCapital();
+            if (!addAnswer(newAnswer)) {
+                i--;
+            }
+        }
+        shuffleAnswers();
+    }
+
+    private boolean addAnswer(String answer) {
         if (!answers.contains(answer)){
             answers.add(answer);
             return true;
@@ -28,11 +48,11 @@ public class Question {
         }
    }
 
-    public void shuffleAnswers(){
+    private void shuffleAnswers() {
         Collections.shuffle(answers);
     }
 
-    public void setQuestionCountry(Country questionCountry) {
+    private void setQuestionCountry(Country questionCountry) {
         this.questionCountry = questionCountry;
         answers.clear();
         setCorrectAnswer(questionCountry.getCapital());
