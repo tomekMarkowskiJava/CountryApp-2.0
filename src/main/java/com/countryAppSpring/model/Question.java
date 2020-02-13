@@ -24,14 +24,16 @@ public class Question {
     }
 
     public void createQuestion() {
-        List<Country> countriesPool = countryRepository.findCountriesByRegion(game.getChosenRegion());
+
         Random random = new Random();
 
-        setQuestionCountry(countriesPool.remove(random.nextInt(countriesPool.size())));
+        setQuestionCountry(game.countriesPool.get(random.nextInt(game.countriesPool.size())));
+        game.countriesPool.remove(getQuestionCountry());
+
 
 
         for (int i = 0; i < getNumberOfAnswers() - 1; i++) {
-            String newAnswer = countriesPool.get(random.nextInt(countriesPool.size())).getCapital();
+            String newAnswer = game.countriesPool.get(random.nextInt(game.countriesPool.size())).getCapital();
             if (!addAnswer(newAnswer)) {
                 i--;
             }

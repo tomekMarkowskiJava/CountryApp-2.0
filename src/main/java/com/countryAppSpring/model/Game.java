@@ -1,7 +1,11 @@
 package com.countryAppSpring.model;
 
+import com.countryAppSpring.service.CountryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Scope("singleton")
@@ -10,6 +14,9 @@ public class Game {
     private int round;
     private int numberOfQuestions = 10;
     private String chosenRegion;
+    List<Country> countriesPool;
+    CountryRepository countryRepository;
+
 
     private String result;
 
@@ -26,7 +33,10 @@ public class Game {
         return result;
     }
 
-    public Game() {
+    @Autowired
+    public Game(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+
     }
 
     private void reset() {
@@ -57,6 +67,7 @@ public class Game {
     public void setChosenRegion(String chosenRegion) {
         reset();
         this.chosenRegion = chosenRegion;
+        countriesPool = countryRepository.findCountriesByRegion(getChosenRegion());
     }
 
     public int getRound() {
