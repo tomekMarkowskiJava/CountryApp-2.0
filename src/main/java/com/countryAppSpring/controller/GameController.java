@@ -63,7 +63,7 @@ public class GameController {
 
     @GetMapping
     public String menu() throws IOException {
-//        apiController.downloadData();
+        apiController.downloadData();
         return "index";
     }
 
