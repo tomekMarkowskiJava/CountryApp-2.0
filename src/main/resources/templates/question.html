@@ -22,7 +22,6 @@
         <form  method="post" name="form" th:each="answer: ${answers}">
             <br>
             <button type="submit" class="buttons" name="userAnswer" th:value="${answer}" th:text="${answer}"></button>
-            <br>
         </form>
     </div>
     <br/>

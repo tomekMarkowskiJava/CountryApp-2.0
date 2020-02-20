@@ -16,14 +16,14 @@ div#footer{
     width: 600px;
     opacity: 0.9;
     position: center;
-    font-size: larger;
+    font-size: xx-large;
 }
 .buttons {
     background-color: dodgerblue;
     color: white;
     width: 180px;
     height: 75px;
-    font-size: large;
+    font-size: x-large;
 }
 
 .body{
