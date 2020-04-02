@@ -26,11 +26,13 @@
             <label>Your comment: </label>
             <input type="text" th:field="*{commentText}" placeholder="Comment" name="comment_text" /><br/>
             <br/>
-            <input type="submit" class="small_buttons"><b>Add comment</b></input>
+            <input type="submit" class="small_buttons" value="Add comment">
         </form>
     </div>
     <br/>
     <div class="div">
+        <h1>Comments:</h1>
+        <br/>
         <th:block>
             <ul>
                 <th:block th:each="c : ${commentList}">
@@ -42,7 +44,7 @@
     </div>
     <br/>
     <div class="div">
-        <button type="button" onclick="window.location.href='/'" class="small_buttons"><b>Back</b></button>
+        <button type="button" onclick="window.location.href='/'" class="small_buttons">Back</button>
     </div>
 
 </center>
