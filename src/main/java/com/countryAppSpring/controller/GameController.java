@@ -1,7 +1,9 @@
 package com.countryAppSpring.controller;
 
+import com.countryAppSpring.model.Comment;
 import com.countryAppSpring.model.Game;
 import com.countryAppSpring.model.Question;
+import com.countryAppSpring.service.CommentRepository;
 import com.countryAppSpring.service.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import java.io.IOException;
 public class GameController {
 
     private CountryRepository countryRepository;
+    private CommentRepository commentRepository;
     private ApiController apiController;
     private Game game;
 
@@ -23,8 +26,9 @@ public class GameController {
 
 
     @Autowired
-    public GameController(CountryRepository countryRepository, ApiController apiController, Game game, Question question) {
+    public GameController(CountryRepository countryRepository, CommentRepository commentRepository, ApiController apiController, Game game, Question question) {
         this.countryRepository = countryRepository;
+        this.commentRepository = commentRepository;
         this.apiController = apiController;
         this.game = game;
         this.question = question;
@@ -40,6 +44,13 @@ public class GameController {
     public String start() {
 
         return "chooseregion";
+    }
+
+    @GetMapping("/comments")
+    public String showComments(Model model){
+        model.addAttribute("comment", new Comment());
+       model.addAttribute("commentList", commentRepository.findAll());
+       return "comments";
     }
 
     @GetMapping("/question")
