@@ -21,11 +21,14 @@
         <form action="/index.html" th:action="@{/comments}"  th:object="${comment}" method="post">
             <label>Your Name: </label>
             <input type="text" th:field="*{commentName}" placeholder="Name" name="comment_name" /><br/>
-            <label>Your comment: </label><br/>
+            <br/>
+            <label>Your comment: </label>
             <input type="text" th:field="*{commentText}" placeholder="Comment" name="comment_text" /><br/>
             <input type="submit" value="Submit" />
         </form>
-
+    </div>
+    <br/>
+    <div class="div">
         <th:block>
             <ul>
                 <th:block th:each="c : ${commentList}">

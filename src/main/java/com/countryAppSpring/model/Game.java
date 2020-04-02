@@ -26,7 +26,7 @@ public class Game {
         } else if (points > 3) {
             result = "Not bad. You know some capitals. But you can still do better.";
         } else if (points > 0) {
-            result = "Unfortunatelly, You know only few capitals...";
+            result = "Unfortunatelly... You know only a few capitals...";
         } else {
             result = "Really? You don't know any capitals?";
         }
