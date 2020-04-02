@@ -21,7 +21,7 @@ public class CommentsController {
     }
 
     @PostMapping
-    public String addComment(@ModelAttribute("comment")Comment comment, Model model){
+    public String addComment(@ModelAttribute("comment") Comment comment, Model model) {
         commentRepository.save(comment);
         model.addAttribute("allComments", commentRepository.findAll());
         return "redirect:/comments";
