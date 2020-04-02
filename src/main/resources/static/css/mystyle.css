@@ -26,6 +26,14 @@ div#footer{
     font-size: larger;
 }
 
+.small_buttons {
+    background-color: dodgerblue;
+    color: white;
+    width: 120px;
+    height: 50px;
+    font-size: larger;
+}
+
 .body{
     background-image: url("../images/world.jpg");
     background-size: cover;
