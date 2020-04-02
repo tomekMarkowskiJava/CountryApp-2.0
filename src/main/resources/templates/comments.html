@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:mvc="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Quiz</title>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+</head>
+<body class="body">
+<center>
+    <div class="div">
+        <header>
+            <h1 style="font-family: fantasy">
+                Country Quiz
+            </h1>
+        </header>
+    </div>
+    <br/>
+
+    <div class="div">
+        <form action="/index.html" th:action="@{/comments}"  th:object="${comment}" method="post">
+            <label>Your Name: </label>
+            <input type="text" th:field="*{commentName}" placeholder="Enter Your Name" name="commenter_name" /><br/>
+            <label>Leave your comment: </label><br/>
+            <input type="text" th:field="*{commentText}" placeholder="Enter any thing you want to say" name="comment_text" /><br/>
+            <input type="submit" value="Submit" />
+        </form>
+
+        <th:block>
+            <ul>
+                <th:block th:each="c : ${allComments}">
+                    <li><b><label th:text="${c.commentText}"></label></b><br/><label th:text="'By: ' + ${c.commentName}"></label></li>
+                </th:block>
+            </ul>
+        </th:block>
+    </div>
+    <br/>
+    <div class="div">
+        <button type="button" onclick="window.location.href='/'" class="buttons"><b>Back</b></button>
+    </div>
+
+</center>
+</body>
+</html>
